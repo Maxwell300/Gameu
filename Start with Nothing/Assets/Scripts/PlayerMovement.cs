@@ -20,9 +20,13 @@ public class PlayerMovement : MonoBehaviour
   bool abilityToJump = false;
   bool jump = false;
   bool dead = false;
-  int targetCount;
 
-  bool shooting;
+    int numberOfTargets = 2;
+    int targetsHit = 0;
+    bool hitTarget = false;
+    float targetHitTimer;
+
+    bool shooting;
   float shootTimer;
 
   public GameObject projectilePreFab;
@@ -55,7 +59,14 @@ public class PlayerMovement : MonoBehaviour
     {
       Shoot();
     }
-  }
+
+        Timer(ref hitTarget, ref targetHitTimer);
+        Debug.Log(targetsHit);
+        if (targetsHit == numberOfTargets)
+        {
+            Debug.Log("TargetsHit reached");
+        }
+    }
 
   public void OnLanding()
   {
@@ -124,12 +135,25 @@ public class PlayerMovement : MonoBehaviour
 
     animator.SetTrigger("Shooting");
   }
+<<<<<<< HEAD
   public void TargetCount()
   {
     targetCount++;
   }
+=======
+    public void TargetCount()
+    {
+        if(hitTarget)
+        {
+            return;
+        }
+        targetsHit++;
+        targetHitTimer = 0.5f;
+        hitTarget = true;
+    }
+>>>>>>> d148832d0702e68388c7d3dfafcb1413e65aea5b
 
-  public bool Timer(ref bool isChanging, ref float timer)
+    public bool Timer(ref bool isChanging, ref float timer)
   {
     if (isChanging)
     {
