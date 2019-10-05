@@ -10,11 +10,17 @@ public class PlayerMovement : MonoBehaviour
   public CharacterController2D controller;
   public Animator animator;
   public Sprite eyesLegsSprite;
-    public Sprite gunSprite;
-    public Sprite wingsSprite;
-    public Cinemachine.CinemachineVirtualCamera playerCamera;
+  public Sprite gunSprite;
+  public Sprite wingsSprite;
+  public Cinemachine.CinemachineVirtualCamera playerCamera;
 
-  Rigidbody2D rigidBody2D;
+    AudioSource audio;
+    public AudioClip loop1;
+    public AudioClip loop2;
+    public AudioClip loop3;
+    public AudioClip loop4;
+
+    Rigidbody2D rigidBody2D;
 
   public float runSpeed = 40f;
 
@@ -39,6 +45,9 @@ public class PlayerMovement : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
+        audio = GetComponent<AudioSource>();
+        audio.clip = loop1;
+        audio.Play();
   }
 
   // Update is called once per frame
@@ -122,12 +131,16 @@ public class PlayerMovement : MonoBehaviour
     this.GetComponent<SpriteRenderer>().sprite = eyesLegsSprite;
     abilityToJump = true;
     playerCamera.Priority = 100;
+    audio.clip = loop2;
+    audio.Play();
   }
 
     public void GunCollected()
     {
         this.GetComponent<SpriteRenderer>().sprite = gunSprite;
         hasGun = true;
+        audio.clip = loop3;
+        audio.Play();
     }
   void Shoot()
   {
