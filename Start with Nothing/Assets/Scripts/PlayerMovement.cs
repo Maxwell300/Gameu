@@ -124,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
 
     animator.SetTrigger("Shooting");
   }
-  public TargetCount()
+  public void TargetCount()
   {
     targetCount++;
   }
