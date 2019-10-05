@@ -62,10 +62,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Audio.cs" />
     <Compile Include="Assets\Scripts\CharacterController2D.cs" />
+    <Compile Include="Assets\Scripts\Crown.cs" />
     <Compile Include="Assets\Scripts\EyesLegs.cs" />
-    <Compile Include="Assets\Scripts\Gem.cs" />
     <Compile Include="Assets\Scripts\Laser.cs" />
     <Compile Include="Assets\Scripts\LaserBox.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />

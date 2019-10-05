@@ -36,7 +36,6 @@ public class Laser : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("inside trigger");
         PlayerMovement controller = other.GetComponent<PlayerMovement>();
         if (controller != null)
         {

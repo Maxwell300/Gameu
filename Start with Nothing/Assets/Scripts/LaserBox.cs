@@ -7,7 +7,7 @@ public class LaserBox : MonoBehaviour
     public GameObject projectilePreFab;
     Rigidbody2D rigidBody2D;
     bool isShooting = false;
-    float shootingTimer = 1f;
+    float shootingTimer = 2f;
     public bool shootUp;
     void Awake()
     {
