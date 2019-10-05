@@ -10,7 +10,9 @@ public class PlayerMovement : MonoBehaviour
   public CharacterController2D controller;
   public Animator animator;
   public Sprite eyesLegsSprite;
-  public Cinemachine.CinemachineVirtualCamera playerCamera;
+    public Sprite gunSprite;
+    public Sprite wingsSprite;
+    public Cinemachine.CinemachineVirtualCamera playerCamera;
 
   Rigidbody2D rigidBody2D;
 
@@ -18,15 +20,18 @@ public class PlayerMovement : MonoBehaviour
 
   float horizontalMove = 0f;
   bool abilityToJump = false;
+  bool hasGun = false;
+  bool abilityToFly = false;
   bool jump = false;
+  bool flying = false;
   bool dead = false;
 
-    int numberOfTargets = 2;
-    int targetsHit = 0;
-    bool hitTarget = false;
-    float targetHitTimer;
+  int numberOfTargets = 2;
+  int targetsHit = 0;
+  bool hitTarget = false;
+  float targetHitTimer;
 
-    bool shooting;
+  bool shooting;
   float shootTimer;
 
   public GameObject projectilePreFab;
@@ -50,23 +55,30 @@ public class PlayerMovement : MonoBehaviour
     {
       jump = true;
     }
+    if (Input.GetButton("Jump") && abilityToFly == true)
+    {
+        flying = true;
+    } else
+    {
+        flying = false;
+    }
 
-    if (dead)
-    { // if life is zero reload level
+        if (dead)
+    { 
       SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    if (Input.GetButtonDown("Fire1"))
+    if (Input.GetButtonDown("Fire1") && hasGun == true)
     {
       Shoot();
     }
 
-        Timer(ref hitTarget, ref targetHitTimer);
-        Debug.Log(targetsHit);
-        if (targetsHit == numberOfTargets)
-        {
-            Debug.Log("TargetsHit reached");
-        }
+    Timer(ref hitTarget, ref targetHitTimer);
+    if (targetsHit == numberOfTargets)
+    {
+        Debug.Log("TargetsHit reached");
     }
+        Debug.Log(rigidBody2D.gravityScale);
+ }
 
   public void OnLanding()
   {
@@ -96,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
 
   void FixedUpdate()
   {
-    controller.Move(horizontalMove * Time.deltaTime, false, jump);
+    controller.Move(horizontalMove * Time.deltaTime, false, jump, flying, abilityToFly);
     jump = false;
   }
 
@@ -112,6 +124,11 @@ public class PlayerMovement : MonoBehaviour
     playerCamera.Priority = 100;
   }
 
+    public void GunCollected()
+    {
+        this.GetComponent<SpriteRenderer>().sprite = gunSprite;
+        hasGun = true;
+    }
   void Shoot()
   {
     GameObject projectileObject;
@@ -135,12 +152,6 @@ public class PlayerMovement : MonoBehaviour
 
     animator.SetTrigger("Shooting");
   }
-<<<<<<< HEAD
-  public void TargetCount()
-  {
-    targetCount++;
-  }
-=======
     public void TargetCount()
     {
         if(hitTarget)
@@ -151,7 +162,18 @@ public class PlayerMovement : MonoBehaviour
         targetHitTimer = 0.5f;
         hitTarget = true;
     }
->>>>>>> d148832d0702e68388c7d3dfafcb1413e65aea5b
+
+    public void CanFly()
+    {
+        this.GetComponent<SpriteRenderer>().sprite = wingsSprite;
+        abilityToFly = true;
+        abilityToJump = false;
+    }
+
+    public void Died()
+    {
+        dead = true;
+    }
 
     public bool Timer(ref bool isChanging, ref float timer)
   {

@@ -6,14 +6,14 @@ public class Projectile : MonoBehaviour
 {
   Rigidbody2D rigidBody2D;
   public ParticleSystem hitEffect;
-    public PlayerMovement player;
+    PlayerMovement player;
     PlayerMovement test;
 
 
     void Awake()
   {
     rigidBody2D = GetComponent<Rigidbody2D>();
-        test = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        player = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
   void Update()
   {
@@ -38,20 +38,14 @@ public class Projectile : MonoBehaviour
     }
   }
 
-  void OnTriggerEnter2D(Collision2D other)
+  void OnTriggerEnter2D(Collider2D other)
   {
-
-  }
-
-  void OnTriggerStay2D(Collider2D other)
-  {
-        
-        Target target = other.GetComponent<Target>();
-        if(target != null)
-        {
-            test.TargetCount();
-        }
-    hitEffect = Instantiate(hitEffect, rigidBody2D.position, Quaternion.identity);
+    Target target = other.GetComponent<Target>();
+    if(target != null)
+    {
+       player.TargetCount();
+    }
+    //hitEffect = Instantiate(hitEffect, rigidBody2D.position, Quaternion.identity);
     Destroy(gameObject);
   }
 }
