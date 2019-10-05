@@ -6,10 +6,15 @@ public class Projectile : MonoBehaviour
 {
   Rigidbody2D rigidBody2D;
   public ParticleSystem hitEffect;
-  void Awake()
+    public PlayerMovement player;
+    PlayerMovement test;
+
+
+    void Awake()
   {
     rigidBody2D = GetComponent<Rigidbody2D>();
-  }
+        test = GameObject.Find("Player").GetComponent<PlayerMovement>();
+    }
   void Update()
   {
     if (transform.position.magnitude > 1000f)
@@ -40,6 +45,12 @@ public class Projectile : MonoBehaviour
 
   void OnTriggerStay2D(Collider2D other)
   {
+        
+        Target target = other.GetComponent<Target>();
+        if(target != null)
+        {
+            test.TargetCount();
+        }
     hitEffect = Instantiate(hitEffect, rigidBody2D.position, Quaternion.identity);
     Destroy(gameObject);
   }

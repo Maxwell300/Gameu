@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 4549844974768585240}
   - component: {fileID: 1249402298}
   - component: {fileID: 1249402305}
+  - component: {fileID: 1793746054}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -92,7 +93,7 @@ Transform:
   m_GameObject: {fileID: 4549844974768585216}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.177, y: 3.42, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.49084842, y: 0.49084842, z: 0.49084842}
   m_Children:
   - {fileID: 2024863075173279584}
   - {fileID: 2190281906549419073}
@@ -137,7 +138,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 8c9799c8255e3e64b9d2b0001251453d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5f8f12119ddfffb46bccfbf9a149b712, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -182,18 +183,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.013103962, y: -0.26495337}
+  m_Offset: {x: -0.14296943, y: -0.33421493}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.84, y: 1.84}
+    oldSize: {x: 5, y: 5}
     newSize: {x: 1.84, y: 1.84}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8209691, y: 1.1976695}
+  m_Size: {x: 3.1931696, y: 1.3361926}
   m_EdgeRadius: 0
 --- !u!58 &4549844974768585217
 CircleCollider2D:
@@ -244,14 +245,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1249402305}
   animator: {fileID: 4549844974768585240}
+  eyesLegsSprite: {fileID: 21300000, guid: a87d0615cc0c95946ba3eef1ed254d91, type: 3}
+  playerCamera: {fileID: 0}
   runSpeed: 40
-  maxHealth: 1
-  currentHealth: 0
-  gemTotal: 0
-  projectilePreFab: {fileID: 0}
-  hearts: []
-  fullHeart: {fileID: 0}
-  emptyHeart: {fileID: 0}
+  projectilePreFab: {fileID: 3433103268688116117, guid: 2547303cb91f6634ab26dbb2a184116f,
+    type: 3}
 --- !u!114 &1249402305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,12 +265,12 @@ MonoBehaviour:
   m_JumpForce: 400
   m_CrouchSpeed: 0.36
   m_MovementSmoothing: 0.05
-  m_AirControl: 0
+  m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 0
-  m_GroundCheck: {fileID: 0}
-  m_CeilingCheck: {fileID: 0}
+    m_Bits: 512
+  m_GroundCheck: {fileID: 2190281906549419073}
+  m_CeilingCheck: {fileID: 2024863075173279584}
   m_CrouchDisableCollider: {fileID: 0}
   m_FacingRight: 1
   OnLandEvent:
@@ -281,4 +279,16 @@ MonoBehaviour:
   OnCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
-  FallSpeed: 100
+  FallSpeed: 25
+--- !u!114 &1793746054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4549844974768585216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671af212fdbf6fb4fbc1e235bd88b06e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
