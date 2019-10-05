@@ -111,13 +111,23 @@ public class PlayerMovement : MonoBehaviour
     {
       animator.SetBool("isJumping", true);
     }
-  }
+    MovingPlatform platform = other.gameObject.GetComponent<MovingPlatform>();
+    if (platform != null)
+    {
+        this.transform.parent = null;
+    }
+ }
 
   void OnCollisionStay2D(Collision2D other)
   {
     if (other.gameObject.tag == "Ground")
     {
       animator.SetBool("isJumping", false);
+    }
+    MovingPlatform platform = other.gameObject.GetComponent<MovingPlatform>();
+    if (platform != null)
+    {
+        this.transform.parent = other.transform;
     }
   }
 
