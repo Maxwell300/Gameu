@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
         flying = false;
     }
 
-        if (dead)
+    if (dead)
     { 
       SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -139,11 +139,11 @@ public class PlayerMovement : MonoBehaviour
     }
     if (controller.m_FacingRight)
     {
-      projectileObject = Instantiate(projectilePreFab, rigidBody2D.position + Vector2.up * -0.3f + Vector2.right * 1f, Quaternion.identity);
+      projectileObject = Instantiate(projectilePreFab, rigidBody2D.position + Vector2.up * 0.3f + Vector2.right * 1f, Quaternion.identity);
     }
     else
     {
-      projectileObject = Instantiate(projectilePreFab, rigidBody2D.position + Vector2.up * -0.3f + Vector2.right * -1f, Quaternion.identity);
+      projectileObject = Instantiate(projectilePreFab, rigidBody2D.position + Vector2.up * 0.3f + Vector2.right * -1f, Quaternion.identity);
     }
     projectile = projectileObject.GetComponent<Projectile>();
     projectile.Shoot(controller.m_FacingRight, 800);  //second number is speed of projectile
@@ -173,6 +173,7 @@ public class PlayerMovement : MonoBehaviour
     public void Died()
     {
         dead = true;
+        Debug.Log("died");
     }
 
     public bool Timer(ref bool isChanging, ref float timer)

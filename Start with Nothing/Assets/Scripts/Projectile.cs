@@ -7,8 +7,6 @@ public class Projectile : MonoBehaviour
   Rigidbody2D rigidBody2D;
   public ParticleSystem hitEffect;
     PlayerMovement player;
-    PlayerMovement test;
-
 
     void Awake()
   {

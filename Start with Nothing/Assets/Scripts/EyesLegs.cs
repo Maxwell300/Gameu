@@ -11,7 +11,6 @@ public class EyesLegs : MonoBehaviour
     PlayerMovement controller = other.GetComponent<PlayerMovement>();
     if (controller != null)
     {
-      print("inside eyeslegs");
       controller.EyesLegs();
       // animator.SetBool("Collected", true);
       Destroy(gameObject);
