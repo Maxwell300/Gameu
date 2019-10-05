@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\Projectile.cs" />
      <Compile Include="Assets\Scripts\Spikes.cs" />
      <Compile Include="Assets\Scripts\Target.cs" />
+     <None Include="Assets\ProjectSettings\ProjectVersion.txt" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>D:/Unity games/Gameu/Start with Nothing/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
