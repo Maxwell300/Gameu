@@ -5,7 +5,8 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     public Collider2D collider;
-    void OnTriggerStay2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
+        Destroy(gameObject);
     }
 }

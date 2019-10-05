@@ -68,9 +68,11 @@
     <Compile Include="Assets\Scripts\Gem.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Projectile.cs" />
+    <Compile Include="Assets\Scripts\ShootingObject.cs" />
     <Compile Include="Assets\Scripts\Spikes.cs" />
     <Compile Include="Assets\Scripts\Target.cs" />
     <Compile Include="Assets\Scripts\TargetHandler.cs" />
+    <Compile Include="Assets\Scripts\Wings.cs" />
     <None Include="Assets\ProjectSettings\ProjectVersion.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Gameu/Start with Nothing/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

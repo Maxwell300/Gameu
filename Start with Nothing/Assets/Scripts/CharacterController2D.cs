@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
+
+//Modified basic character controller that I reused from a previous tutorial/project
 public class CharacterController2D : MonoBehaviour
 {
   [SerializeField] private float m_JumpForce = 400f;              // Amount of force added when the player jumps.
+    public float flySpeed = 100f;
   [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;      // Amount of maxSpeed applied to crouching movement. 1 = 100%
   [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
   [SerializeField] private bool m_AirControl = false;             // Whether or not a player can steer while jumping;
@@ -27,9 +30,6 @@ public class CharacterController2D : MonoBehaviour
   [System.Serializable]
   public class BoolEvent : UnityEvent<bool> { }
 
-  public BoolEvent OnCrouchEvent;
-  private bool m_wasCrouching = false;
-
   public float FallSpeed = 100f;
 
   private void Awake()
@@ -38,9 +38,6 @@ public class CharacterController2D : MonoBehaviour
 
     if (OnLandEvent == null)
       OnLandEvent = new UnityEvent();
-
-    if (OnCrouchEvent == null)
-      OnCrouchEvent = new BoolEvent();
   }
 
   private void FixedUpdate()
@@ -62,51 +59,13 @@ public class CharacterController2D : MonoBehaviour
     }
   }
 
-  public void Move(float move, bool crouch, bool jump)
+  public void Move(float move, bool crouch, bool jump, bool flying, bool hasFlying)
   {
-    // If crouching, check to see if the character can stand up
-    if (!crouch)
-    {
-      // If the character has a ceiling preventing them from standing up, keep them crouching
-      if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))
-      {
-        crouch = true;
-      }
-    }
+    
 
     //only control the player if grounded or airControl is turned on
     if (m_Grounded || m_AirControl)
-    {
-
-      // If crouching
-      if (crouch)
-      {
-        if (!m_wasCrouching)
-        {
-          m_wasCrouching = true;
-          OnCrouchEvent.Invoke(true);
-        }
-
-        // Reduce the speed by the crouchSpeed multiplier
-        move *= m_CrouchSpeed;
-
-        // Disable one of the colliders when crouching
-        if (m_CrouchDisableCollider != null)
-          m_CrouchDisableCollider.enabled = false;
-      }
-      else
-      {
-        // Enable the collider when not crouching
-        if (m_CrouchDisableCollider != null)
-          m_CrouchDisableCollider.enabled = true;
-
-        if (m_wasCrouching)
-        {
-          m_wasCrouching = false;
-          OnCrouchEvent.Invoke(false);
-        }
-      }
-
+    { 
       // Move the character by finding the target velocity
       Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
       // And then smoothing it out and applying it to the character
@@ -132,10 +91,19 @@ public class CharacterController2D : MonoBehaviour
       m_Grounded = false;
       m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
     }
-    if (m_Rigidbody2D.velocity.y < 0)
+    if (m_Rigidbody2D.velocity.y < 0 && !hasFlying) //make the fallspeed with wings bareable
     {
       m_Rigidbody2D.AddForce(new Vector2(0f, -FallSpeed));
     }
+    if (flying) 
+    {
+        m_Rigidbody2D.gravityScale = 0f; // 0 gravity for a snappier response when trying to ascend from falling a distance
+        m_Rigidbody2D.AddForce(new Vector2(0f, flySpeed));
+    }
+    if (hasFlying && !flying)
+        {
+            m_Rigidbody2D.gravityScale = 0.7f;  //adjust to a lighter gravity to simulate floating down
+        }
   }
 
 
