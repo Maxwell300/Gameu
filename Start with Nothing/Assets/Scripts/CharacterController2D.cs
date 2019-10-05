@@ -32,6 +32,8 @@ public class CharacterController2D : MonoBehaviour
   public class BoolEvent : UnityEvent<bool> { }
 
   public float FallSpeed = 100f;
+    public bool disabled = false;
+    public float animationTimer;
 
   private void Awake()
   {
@@ -62,7 +64,12 @@ public class CharacterController2D : MonoBehaviour
 
   public void Move(float move, bool crouch, bool jump, bool flying, bool hasFlying)
   {
-    
+        disabled = Timer(ref disabled, ref animationTimer);
+    if(disabled)
+    {
+        m_Rigidbody2D.velocity = new Vector2(0f, 0f);
+        return;
+    }
 
     //only control the player if grounded or airControl is turned on
     if (m_Grounded || m_AirControl)
@@ -119,4 +126,16 @@ public class CharacterController2D : MonoBehaviour
   {
     return m_Rigidbody2D;
   }
+    public bool Timer(ref bool isChanging, ref float timer)
+    {
+        if (isChanging)
+        {
+            timer -= Time.deltaTime;
+            if (timer < 0)
+            {
+                isChanging = false;
+            }
+        }
+        return isChanging;
+    }
 }

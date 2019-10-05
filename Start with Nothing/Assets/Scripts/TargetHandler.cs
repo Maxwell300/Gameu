@@ -18,7 +18,6 @@ public class TargetHandler : MonoBehaviour
     void Update()
     {
         Timer(ref hitTarget, ref targetHitTimer);
-        Debug.Log(targetsHit);
         if(targetsHit == numberOfTargets)
         {
             Debug.Log("TargetsHit reached");

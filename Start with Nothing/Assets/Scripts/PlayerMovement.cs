@@ -10,9 +10,16 @@ public class PlayerMovement : MonoBehaviour
   public CharacterController2D controller;
   public Animator animator;
   public Sprite eyesLegsSprite;
-    public Sprite gunSprite;
-    public Sprite wingsSprite;
-    public Cinemachine.CinemachineVirtualCamera playerCamera;
+  public Sprite gunSprite;
+  public Sprite wingsSprite;
+  public Sprite crownSprite;
+  public Cinemachine.CinemachineVirtualCamera playerCamera;
+
+  AudioSource audio;
+  public AudioClip loop1;
+  public AudioClip loop2;
+  public AudioClip loop3;
+  public AudioClip loop4;
 
   Rigidbody2D rigidBody2D;
 
@@ -39,6 +46,11 @@ public class PlayerMovement : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
+    audio = GetComponent<AudioSource>();
+    audio.clip = loop1;
+    audio.Play();
+
+    controller = this.GetComponent<CharacterController2D>();
   }
 
   // Update is called once per frame
@@ -47,9 +59,18 @@ public class PlayerMovement : MonoBehaviour
     rigidBody2D = controller.GetRigidBody2D();
     horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
-    animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+    if (controller.disabled)
+    {
+        // add animator trigger here for item get animation
+        animator.SetFloat("Speed", 0f);
+    }
 
-    shooting = Timer(ref shooting, ref shootTimer);
+    if (!controller.disabled)
+    {
+      animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+    }
+
+        shooting = Timer(ref shooting, ref shootTimer);
 
     if (Input.GetButtonDown("Jump") && abilityToJump == true)
     {
@@ -77,7 +98,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("TargetsHit reached");
     }
-        Debug.Log(rigidBody2D.gravityScale);
  }
 
   public void OnLanding()
@@ -122,13 +142,20 @@ public class PlayerMovement : MonoBehaviour
     this.GetComponent<SpriteRenderer>().sprite = eyesLegsSprite;
     abilityToJump = true;
     playerCamera.Priority = 100;
+    audio.clip = loop2;
+    audio.Play();
+    controller.disabled = true;
+    controller.animationTimer = 2.0f;
   }
 
     public void GunCollected()
     {
-        this.GetComponent<SpriteRenderer>().sprite = gunSprite;
-        hasGun = true;
+      this.GetComponent<SpriteRenderer>().sprite = gunSprite;
+      hasGun = true;
+      audio.clip = loop3;
+      audio.Play();
     }
+
   void Shoot()
   {
     GameObject projectileObject;
@@ -168,6 +195,10 @@ public class PlayerMovement : MonoBehaviour
         this.GetComponent<SpriteRenderer>().sprite = wingsSprite;
         abilityToFly = true;
         abilityToJump = false;
+    }
+    public void Crown()
+    {
+        this.GetComponent<SpriteRenderer>().sprite = crownSprite;
     }
 
     public void Died()
