@@ -7,11 +7,13 @@ public class LaserBox : MonoBehaviour
     public GameObject projectilePreFab;
     Rigidbody2D rigidBody2D;
     bool isShooting = false;
-    float shootingTimer = 2f;
+    public float shootingTimer = 2f;
+    float timer;
     public bool shootUp;
     void Awake()
     {
         rigidBody2D = GetComponent<Rigidbody2D>();
+        timer = shootingTimer;
     }
     void Update()
     {
@@ -37,7 +39,7 @@ public class LaserBox : MonoBehaviour
         projectile = projectileObject.GetComponent<Laser>();
         projectile.Shoot(shootUp, 400);  //second number is speed of projectile
         isShooting = true;
-        shootingTimer = 1f;
+        shootingTimer = timer;
     }
     public bool Timer(ref bool isChanging, ref float timer)
     {

@@ -93,11 +93,7 @@ public class PlayerMovement : MonoBehaviour
       Shoot();
     }
 
-    Timer(ref hitTarget, ref targetHitTimer);
-    if (targetsHit == numberOfTargets)
-    {
-        Debug.Log("TargetsHit reached");
-    }
+    hitTarget = Timer(ref hitTarget, ref targetHitTimer);
  }
 
   public void OnLanding()
@@ -156,6 +152,7 @@ public class PlayerMovement : MonoBehaviour
     audio.Play();
     controller.disabled = true;
     controller.animationTimer = 2.0f;
+        animator.SetBool("Get Eye", true);
   }
 
     public void GunCollected()
@@ -218,15 +215,19 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public bool Timer(ref bool isChanging, ref float timer)
-  {
-    if (isChanging)
     {
-      timer -= Time.deltaTime;
-      if (timer < 0)
-      {
-        isChanging = false;
-      }
+        if (isChanging)
+        {
+          timer -= Time.deltaTime;
+          if (timer < 0)
+          {
+            isChanging = false;
+          }
+        }
+        return isChanging;
     }
-    return isChanging;
-  }
+    public int getTargetsHit()
+    {
+        return targetsHit;
+    }
 }
