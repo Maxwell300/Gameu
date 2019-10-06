@@ -13,6 +13,7 @@ public class CharacterController2D : MonoBehaviour
   [SerializeField] private bool m_AirControl = false;             // Whether or not a player can steer while jumping;
   [SerializeField] private LayerMask m_WhatIsGround;              // A mask determining what is ground to the character
   [SerializeField] private Transform m_GroundCheck;             // A position marking where to check if the player is grounded.
+  [SerializeField] private Transform m_GroundCheck2;             // A position marking where to check if the player is grounded.
   [SerializeField] private Transform m_CeilingCheck;              // A position marking where to check for ceilings
   [SerializeField] private Collider2D m_CrouchDisableCollider;        // A collider that will be disabled when crouching
 
@@ -60,7 +61,17 @@ public class CharacterController2D : MonoBehaviour
           OnLandEvent.Invoke();
       }
     }
-  }
+    Collider2D[] colliders2 = Physics2D.OverlapCircleAll(m_GroundCheck2.position, k_GroundedRadius, m_WhatIsGround);
+    for (int i = 0; i < colliders2.Length; i++)
+    {
+        if (colliders2[i].gameObject != gameObject)
+        {
+            m_Grounded = true;
+            if (!wasGrounded)
+                OnLandEvent.Invoke();
+        }
+    }
+    }
 
   public void Move(float move, bool crouch, bool jump, bool flying, bool hasFlying)
   {

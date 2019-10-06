@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    public GameObject sprite;
+    public SpriteRenderer SpawnSprite;
     void Start()
     {
-        sprite.GetComponent<SpriteRenderer>();
-        // sprite.disabled;
+        SpawnSprite.GetComponent<SpriteRenderer>();
+        SpawnSprite.enabled = false;
+        this.GetComponent<SpriteRenderer>().enabled = true;
     }
 
     // Update is called once per frame
@@ -16,8 +17,8 @@ public class Interactable : MonoBehaviour
     {
 
     }
-    void interactedWith()
+    public void interactedWith()
     {
-        // sprite.enabled;
+        SpawnSprite.enabled = true;
     }
 }
