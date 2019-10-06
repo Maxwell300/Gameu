@@ -126,9 +126,16 @@ public class CharacterController2D : MonoBehaviour
   {
     return m_Rigidbody2D;
   }
-    public bool getDirection()
+    public Vector2 getDirection()
     {
-        return m_FacingRight;
+        if (m_FacingRight)
+        {
+            return new Vector2(1,0);
+        }
+        else
+        {
+            return new Vector2(-1,0);
+        }
     }
     public bool Timer(ref bool isChanging, ref float timer)
     {
