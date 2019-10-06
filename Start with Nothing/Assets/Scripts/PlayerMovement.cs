@@ -129,7 +129,11 @@ public class PlayerMovement : MonoBehaviour
 
   void OnTriggerEnter2D(Collider2D other)
   {
-
+        Target target = other.gameObject.GetComponent<Target>();
+        if (target)
+        {
+            TargetCount();
+        }
   }
 
   void FixedUpdate()
@@ -193,7 +197,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         targetsHit++;
-        targetHitTimer = 0.5f;
+        targetHitTimer = 0.1f;
         hitTarget = true;
     }
 
@@ -233,5 +237,9 @@ public class PlayerMovement : MonoBehaviour
     public int getTargetsHit()
     {
         return targetsHit;
+    }
+    public void resetTargetsHit()
+    {
+        targetsHit = 0;
     }
 }

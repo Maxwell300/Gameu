@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    public int numberToProceed = 6;
     PlayerMovement player;
     void Start()
     {
@@ -13,9 +14,16 @@ public class Door : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(player.getTargetsHit() == 6)
+        Debug.Log(player.getTargetsHit());
+        if(player.getTargetsHit() == numberToProceed)
         {
-            Destroy(gameObject);
+            Debug.Log("inside if");
+            Destroy();
+            player.resetTargetsHit();
         }
+    }
+    public void Destroy()
+    {
+        Destroy(gameObject);
     }
 }

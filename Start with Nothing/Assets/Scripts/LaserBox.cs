@@ -8,6 +8,7 @@ public class LaserBox : MonoBehaviour
     Rigidbody2D rigidBody2D;
     bool isShooting = false;
     public float shootingTimer = 2f;
+    public float delayStart = 0f;
     float timer;
     public bool shootUp;
     void Awake()
@@ -17,6 +18,11 @@ public class LaserBox : MonoBehaviour
     }
     void Update()
     {
+        delayStart -= Time.deltaTime;
+        if (delayStart > 0)
+        {
+            return;
+        }
         isShooting = Timer(ref isShooting, ref shootingTimer);
         Shoot();
     }
@@ -52,5 +58,9 @@ public class LaserBox : MonoBehaviour
             }
         }
         return isChanging;
+    }
+    public void Destroy()
+    {
+        Destroy(gameObject);
     }
 }

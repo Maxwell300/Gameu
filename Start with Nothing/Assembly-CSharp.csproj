@@ -64,6 +64,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CharacterController2D.cs" />
     <Compile Include="Assets\Scripts\Crown.cs" />
+    <Compile Include="Assets\Scripts\disableDoor.cs" />
+    <Compile Include="Assets\Scripts\disableLaserBox.cs" />
     <Compile Include="Assets\Scripts\Door.cs" />
     <Compile Include="Assets\Scripts\EyesLegs.cs" />
     <Compile Include="Assets\Scripts\Laser.cs" />
@@ -74,7 +76,6 @@
     <Compile Include="Assets\Scripts\ShootingObject.cs" />
     <Compile Include="Assets\Scripts\Spikes.cs" />
     <Compile Include="Assets\Scripts\Target.cs" />
-    <Compile Include="Assets\Scripts\TargetHandler.cs" />
     <Compile Include="Assets\Scripts\Wings.cs" />
     <None Include="Assets\ProjectSettings\ProjectVersion.txt" />
     <Reference Include="Unity.Timeline.Editor">
