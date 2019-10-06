@@ -13,7 +13,7 @@ public class Door : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(player.getTargetsHit() == 5)
+        if(player.getTargetsHit() == 6)
         {
             Destroy(gameObject);
         }
