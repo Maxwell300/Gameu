@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
   public Sprite wingsSprite;
   public Sprite crownSprite;
   public Cinemachine.CinemachineVirtualCamera playerCamera;
+  public Cinemachine.CinemachineVirtualCamera finalCamera;
 
   AudioSource audio;
   public AudioClip loop1;
@@ -164,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
   {
     this.GetComponent<SpriteRenderer>().sprite = eyesLegsSprite;
     abilityToJump = true;
-    playerCamera.Priority = 100;
+    playerCamera.Priority = 20;
     audio.clip = loop2;
     audio.Play();
     controller.disabled = true;
@@ -225,6 +226,7 @@ public class PlayerMovement : MonoBehaviour
     public void Crown()
     {
         this.GetComponent<SpriteRenderer>().sprite = crownSprite;
+        finalCamera.Priority = 30;
         audio.clip = loop5;
         audio.Play();
     }
