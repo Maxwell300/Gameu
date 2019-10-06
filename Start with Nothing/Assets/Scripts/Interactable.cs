@@ -5,20 +5,18 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     public SpriteRenderer SpawnSprite;
+    public Door door;
     void Start()
     {
         SpawnSprite.GetComponent<SpriteRenderer>();
         SpawnSprite.enabled = false;
         this.GetComponent<SpriteRenderer>().enabled = true;
+        door.GetComponent<Door>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void interactedWith()
     {
         SpawnSprite.enabled = true;
+        door.Destroy();
     }
 }
