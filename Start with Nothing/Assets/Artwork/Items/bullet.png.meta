@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e33cd10ac5b8dca4593c067116dee6ac
+guid: 0785d7db782aa1d46a0806ac27b7c893
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3430713213295261485
-    second: Eye_idle0001_0
+      213: -2346302928887187388
+    second: bullet_0
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -89,13 +89,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Eye_idle0001_0
+      name: bullet_0
       rect:
         serializedVersion: 2
-        x: 140
-        y: 5
-        width: 237
-        height: 327
+        x: 158
+        y: 144
+        width: 205
+        height: 206
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -103,8 +103,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72bb1a1cf6efc284ebe5b13e13f2cd72
-      internalID: -3430713213295261485
+      spriteID: dcc881ba87d1185448369bcbfad74b0b
+      internalID: -2346302928887187388
       vertices: []
       indices: 
       edges: []

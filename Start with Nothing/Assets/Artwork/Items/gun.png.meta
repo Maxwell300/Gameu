@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e33cd10ac5b8dca4593c067116dee6ac
+guid: 3979cb889073aef4285f47421f1ae99a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3430713213295261485
-    second: Eye_idle0001_0
+      213: -6628414004274166170
+    second: gun_0
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 500
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -89,22 +89,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Eye_idle0001_0
+      name: gun_0
       rect:
         serializedVersion: 2
-        x: 140
-        y: 5
-        width: 237
-        height: 327
+        x: 61
+        y: 112
+        width: 379
+        height: 223
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72bb1a1cf6efc284ebe5b13e13f2cd72
-      internalID: -3430713213295261485
+      spriteID: f261a465f54fdba48a2e1036bf9a11c6
+      internalID: -6628414004274166170
       vertices: []
       indices: 
       edges: []

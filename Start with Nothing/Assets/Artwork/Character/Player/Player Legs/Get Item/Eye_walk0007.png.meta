@@ -1,7 +1,10 @@
 fileFormatVersion: 2
 guid: 4031013499bc2ad4cbd8578c88882835
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 2770574784966383227
+    second: Eye_walk0007_0
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -84,7 +87,28 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Eye_walk0007_0
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 22
+        width: 232
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6d04fd67b3cd634a87d9e8a837c5bc3
+      internalID: 2770574784966383227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
