@@ -44,10 +44,10 @@ AnimatorStateMachine:
     m_Position: {x: 290, y: -20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8921061978357711907}
-    m_Position: {x: 350, y: 150, z: 0}
+    m_Position: {x: 380, y: 170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4653608048754082648}
-    m_Position: {x: 540, y: 60, z: 0}
+    m_Position: {x: 560, y: 70, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -1497612637899924986}
@@ -124,7 +124,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.24999994
   m_TransitionOffset: 0
   m_ExitTime: 0.42307693
   m_HasExitTime: 1
@@ -203,7 +203,7 @@ AnimatorController:
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 1
+    m_DefaultBool: 0
     m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
@@ -251,7 +251,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Player move
-  m_Speed: 1
+  m_Speed: 0.25
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -4507594573354951609}
