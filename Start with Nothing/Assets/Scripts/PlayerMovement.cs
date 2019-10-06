@@ -10,8 +10,8 @@ public class PlayerMovement : MonoBehaviour
   public CharacterController2D controller;
   public Animator animator;
   public Sprite eyesLegsSprite;
-  public Sprite gunSprite;
-  public Sprite wingsSprite;
+  [SerializeField] private GameObject gunSprite;
+    public Sprite wingsSprite;
   public Sprite crownSprite;
   public Cinemachine.CinemachineVirtualCamera playerCamera;
   public Cinemachine.CinemachineVirtualCamera finalCamera;
@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
   public AudioClip loop3;
   public AudioClip loop4;
   public AudioClip loop5;
+  public AudioClip jingle;
+  public AudioClip gunSound;
   Rigidbody2D rigidBody2D;
 
   public float runSpeed = 40f;
@@ -41,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
 
   bool shooting;
   float shootTimer;
+  bool jingling;
+  float jingleTimer;
 
   public GameObject projectilePreFab;
 
@@ -50,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
     audio = GetComponent<AudioSource>();
     audio.clip = loop1;
     audio.Play();
+
+    gunSprite.GetComponent<SpriteRenderer>().enabled = false;
 
     controller = this.GetComponent<CharacterController2D>();
   }
@@ -166,6 +172,7 @@ public class PlayerMovement : MonoBehaviour
     this.GetComponent<SpriteRenderer>().sprite = eyesLegsSprite;
     abilityToJump = true;
     playerCamera.Priority = 20;
+    audio.PlayOneShot(jingle, 0.5f);
     audio.clip = loop2;
     audio.Play();
     controller.disabled = true;
@@ -175,8 +182,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void GunCollected()
     {
-      this.GetComponent<SpriteRenderer>().sprite = gunSprite;
+      gunSprite.GetComponent<SpriteRenderer>().enabled = true;
       hasGun = true;
+      audio.PlayOneShot(jingle, 0.5f);
       audio.clip = loop3;
       audio.Play();
     }
@@ -191,14 +199,15 @@ public class PlayerMovement : MonoBehaviour
     }
     if (controller.m_FacingRight)
     {
-      projectileObject = Instantiate(projectilePreFab, rigidBody2D.position + Vector2.up * 0.3f + Vector2.right * 1f, Quaternion.identity);
+      projectileObject = Instantiate(projectilePreFab, rigidBody2D.position + Vector2.up * 0.05f + Vector2.right * 1.5f, Quaternion.identity);
     }
     else
     {
-      projectileObject = Instantiate(projectilePreFab, rigidBody2D.position + Vector2.up * 0.3f + Vector2.right * -1f, Quaternion.identity);
+      projectileObject = Instantiate(projectilePreFab, rigidBody2D.position + Vector2.up * 0.05f + Vector2.right * -1.5f, Quaternion.identity);
     }
     projectile = projectileObject.GetComponent<Projectile>();
     projectile.Shoot(controller.m_FacingRight, 800);  //second number is speed of projectile
+    audio.PlayOneShot(gunSound);
     shooting = true;
     shootTimer = 0.25f;
 
@@ -220,6 +229,7 @@ public class PlayerMovement : MonoBehaviour
         this.GetComponent<SpriteRenderer>().sprite = wingsSprite;
         abilityToFly = true;
         abilityToJump = false;
+        audio.PlayOneShot(jingle, 0.5f);
         audio.clip = loop4;
         audio.Play();
     }
@@ -227,6 +237,7 @@ public class PlayerMovement : MonoBehaviour
     {
         this.GetComponent<SpriteRenderer>().sprite = crownSprite;
         finalCamera.Priority = 30;
+        audio.PlayOneShot(jingle, 0.5f);
         audio.clip = loop5;
         audio.Play();
     }
@@ -256,5 +267,14 @@ public class PlayerMovement : MonoBehaviour
     public void resetTargetsHit()
     {
         targetsHit = 0;
+    }
+    IEnumerator waitForSoundEffect(AudioClip loop)
+    {
+        while (audio.isPlaying)
+        {
+            yield return null;
+        }
+        audio.clip = loop;
+        audio.Play();
     }
 }
