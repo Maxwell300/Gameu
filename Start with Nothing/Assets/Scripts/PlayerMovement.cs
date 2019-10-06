@@ -93,7 +93,20 @@ public class PlayerMovement : MonoBehaviour
       Shoot();
     }
 
-    hitTarget = Timer(ref hitTarget, ref targetHitTimer);
+    if (Input.GetKeyDown(KeyCode.X))
+    {
+        RaycastHit2D hit = Physics2D.Raycast(rigidBody2D.position + Vector2.up * 0.2f, controller.getDirection(), 1.5f, LayerMask.GetMask("NPC"));
+        if (hit.collider != null)
+        {
+            NPC character = hit.collider.GetComponent<NPC>();
+            if (character != null)
+            {
+                character.DisplayDialog();
+            }
+        }
+    }
+
+        hitTarget = Timer(ref hitTarget, ref targetHitTimer);
  }
 
   public void OnLanding()

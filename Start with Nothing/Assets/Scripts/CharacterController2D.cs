@@ -64,7 +64,7 @@ public class CharacterController2D : MonoBehaviour
 
   public void Move(float move, bool crouch, bool jump, bool flying, bool hasFlying)
   {
-        disabled = Timer(ref disabled, ref animationTimer);
+    disabled = Timer(ref disabled, ref animationTimer);
     if(disabled)
     {
         m_Rigidbody2D.velocity = new Vector2(0f, 0f);
@@ -126,6 +126,10 @@ public class CharacterController2D : MonoBehaviour
   {
     return m_Rigidbody2D;
   }
+    public bool getDirection()
+    {
+        return m_FacingRight;
+    }
     public bool Timer(ref bool isChanging, ref float timer)
     {
         if (isChanging)
