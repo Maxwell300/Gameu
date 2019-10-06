@@ -143,3 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71fd7f6eed547034eafee815bc157e4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  up: 0
+  down: 0
+  rightleft: 0
+  spikeUp: {fileID: 21300000, guid: 3785b96539ecbe44e97eaa9d16dd4539, type: 3}
+  spikeDown: {fileID: 21300000, guid: f4a3c0b69e3f8474f822e87a8bc1bbcc, type: 3}
+  spikeRightLeft: {fileID: 21300000, guid: 9b53889d6a2dc164ea3a1f818903d047, type: 3}

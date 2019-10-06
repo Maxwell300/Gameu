@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
   public AudioClip loop2;
   public AudioClip loop3;
   public AudioClip loop4;
-
+  public AudioClip loop5;
   Rigidbody2D rigidBody2D;
 
   public float runSpeed = 40f;
@@ -202,10 +202,14 @@ public class PlayerMovement : MonoBehaviour
         this.GetComponent<SpriteRenderer>().sprite = wingsSprite;
         abilityToFly = true;
         abilityToJump = false;
+        audio.clip = loop4;
+        audio.Play();
     }
     public void Crown()
     {
         this.GetComponent<SpriteRenderer>().sprite = crownSprite;
+        audio.clip = loop5;
+        audio.Play();
     }
 
     public void Died()
