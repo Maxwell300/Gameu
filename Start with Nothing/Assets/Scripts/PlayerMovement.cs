@@ -152,7 +152,7 @@ public class PlayerMovement : MonoBehaviour
     audio.Play();
     controller.disabled = true;
     controller.animationTimer = 2.0f;
-        animator.SetBool("Get Eye", true);
+    animator.SetTrigger("eyeAnimation");
   }
 
     public void GunCollected()
