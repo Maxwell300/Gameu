@@ -9,9 +9,9 @@ public class Projectile : MonoBehaviour
     PlayerMovement player;
 
     void Awake()
-  {
-    rigidBody2D = GetComponent<Rigidbody2D>();
-        player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+    {
+      rigidBody2D = GetComponent<Rigidbody2D>();
+      player = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
   void Update()
   {
@@ -43,7 +43,6 @@ public class Projectile : MonoBehaviour
     {
        player.TargetCount();
     }
-    //hitEffect = Instantiate(hitEffect, rigidBody2D.position, Quaternion.identity);
     Destroy(gameObject);
   }
 }

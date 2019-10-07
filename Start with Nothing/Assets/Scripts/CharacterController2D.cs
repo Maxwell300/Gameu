@@ -148,6 +148,10 @@ public class CharacterController2D : MonoBehaviour
             return new Vector2(-1,0);
         }
     }
+    public float getVelocityY()
+    {
+        return m_Rigidbody2D.velocity.y;
+    }
     public bool Timer(ref bool isChanging, ref float timer)
     {
         if (isChanging)

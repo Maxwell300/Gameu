@@ -11,8 +11,8 @@ public class PlayerMovement : MonoBehaviour
   public Animator animator;
   public Sprite eyesLegsSprite;
   [SerializeField] private GameObject gunSprite;
-    public Sprite wingsSprite;
-  public Sprite crownSprite;
+  [SerializeField] private GameObject wingsSprite;
+  [SerializeField] private GameObject crownSprite;
   public Cinemachine.CinemachineVirtualCamera playerCamera;
   public Cinemachine.CinemachineVirtualCamera finalCamera;
 
@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
   public float runSpeed = 40f;
 
   float horizontalMove = 0f;
+    float verticalMove = 0f;
   bool abilityToJump = false;
   bool hasGun = false;
   bool abilityToFly = false;
@@ -46,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
   bool jingling;
   float jingleTimer;
 
+  int pedistalPlaced = 0;
+
   public GameObject projectilePreFab;
 
   // Start is called before the first frame update
@@ -56,6 +59,8 @@ public class PlayerMovement : MonoBehaviour
     audio.Play();
 
     gunSprite.GetComponent<SpriteRenderer>().enabled = false;
+    wingsSprite.GetComponent<SpriteRenderer>().enabled = false;
+    crownSprite.GetComponent<SpriteRenderer>().enabled = false;
 
     controller = this.GetComponent<CharacterController2D>();
   }
@@ -65,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
   {
     rigidBody2D = controller.GetRigidBody2D();
     horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+    verticalMove = controller.getVelocityY();
 
     if (controller.disabled)
     {
@@ -75,9 +81,11 @@ public class PlayerMovement : MonoBehaviour
     if (!controller.disabled)
     {
       animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+      animator.SetFloat("verticalSpeed", verticalMove);
+      wingsSprite.GetComponent<Animator>().SetFloat("verticalSpeed", verticalMove);
     }
 
-        shooting = Timer(ref shooting, ref shootTimer);
+    shooting = Timer(ref shooting, ref shootTimer);
 
     if (Input.GetButtonDown("Jump") && abilityToJump == true)
     {
@@ -109,11 +117,13 @@ public class PlayerMovement : MonoBehaviour
             if (podium != null)
             {
                 podium.interactedWith();
+                pedistalPlaced++;
+                DestroyItem();
             }
         }
     }
 
-        hitTarget = Timer(ref hitTarget, ref targetHitTimer);
+    hitTarget = Timer(ref hitTarget, ref targetHitTimer);
  }
 
   public void OnLanding()
@@ -226,7 +236,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void CanFly()
     {
-        this.GetComponent<SpriteRenderer>().sprite = wingsSprite;
+        wingsSprite.GetComponent<SpriteRenderer>().enabled = true;
         abilityToFly = true;
         abilityToJump = false;
         audio.PlayOneShot(jingle, 0.5f);
@@ -235,7 +245,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Crown()
     {
-        this.GetComponent<SpriteRenderer>().sprite = crownSprite;
+        crownSprite.GetComponent<SpriteRenderer>().enabled = true;
         finalCamera.Priority = 30;
         audio.PlayOneShot(jingle, 0.5f);
         audio.clip = loop5;
@@ -268,13 +278,24 @@ public class PlayerMovement : MonoBehaviour
     {
         targetsHit = 0;
     }
-    IEnumerator waitForSoundEffect(AudioClip loop)
+    void DestroyItem()
     {
-        while (audio.isPlaying)
+        if (pedistalPlaced == 1)
         {
-            yield return null;
+            crownSprite.GetComponent<SpriteRenderer>().enabled = false;
         }
-        audio.clip = loop;
-        audio.Play();
+        if (pedistalPlaced == 2)
+        {
+            wingsSprite.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        if (pedistalPlaced == 3)
+        {
+            gunSprite.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        if (pedistalPlaced == 4)
+        {
+            animator.SetTrigger("removeEye");
+        }
+        return;
     }
 }
