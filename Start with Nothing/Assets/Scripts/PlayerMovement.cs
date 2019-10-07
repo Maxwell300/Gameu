@@ -47,6 +47,9 @@ public class PlayerMovement : MonoBehaviour
   bool jingling;
   float jingleTimer;
 
+  bool killing;
+  float killTime;
+
   int pedistalPlaced = 0;
 
   public GameObject projectilePreFab;
@@ -74,7 +77,6 @@ public class PlayerMovement : MonoBehaviour
 
     if (controller.disabled)
     {
-        // add animator trigger here for item get animation
         animator.SetFloat("Speed", 0f);
     }
 
@@ -124,7 +126,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     hitTarget = Timer(ref hitTarget, ref targetHitTimer);
- }
+    killing = killTimer(ref killing, ref killTime);
+  }
 
   public void OnLanding()
   {
@@ -270,6 +273,19 @@ public class PlayerMovement : MonoBehaviour
         }
         return isChanging;
     }
+    public bool killTimer(ref bool isChanging, ref float timer)
+    {
+        if (isChanging)
+        {
+            timer -= Time.deltaTime;
+            if (timer < 0)
+            {
+                isChanging = false;
+                Died();
+            }
+        }
+        return isChanging;
+    }
     public int getTargetsHit()
     {
         return targetsHit;
@@ -297,5 +313,10 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("removeEye");
         }
         return;
+    }
+    public void killGame()
+    {
+        killing = true;
+        killTime = 11f;
     }
 }

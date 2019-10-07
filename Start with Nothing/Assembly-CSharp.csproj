@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\LaserBox.cs" />
     <Compile Include="Assets\Scripts\MovingPlatform.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\playFinalSong.cs" />
     <Compile Include="Assets\Scripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\ShootingObject.cs" />
     <Compile Include="Assets\Scripts\Spikes.cs" />
