@@ -316,6 +316,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void killGame()
     {
+        animator.SetTrigger("final");
         killing = true;
         killTime = 11f;
     }
