@@ -127,7 +127,12 @@ public class PlayerMovement : MonoBehaviour
 
     hitTarget = Timer(ref hitTarget, ref targetHitTimer);
     killing = killTimer(ref killing, ref killTime);
-  }
+
+    if (Input.GetKey("escape"))
+    {
+        Application.Quit();
+    }
+    }
 
   public void OnLanding()
   {
@@ -282,6 +287,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 isChanging = false;
                 Died();
+                Application.Quit();
             }
         }
         return isChanging;
@@ -303,10 +309,12 @@ public class PlayerMovement : MonoBehaviour
         if (pedistalPlaced == 2)
         {
             wingsSprite.GetComponent<SpriteRenderer>().enabled = false;
+            abilityToFly = false;
         }
         if (pedistalPlaced == 3)
         {
             gunSprite.GetComponent<SpriteRenderer>().enabled = false;
+            hasGun = false;
         }
         if (pedistalPlaced == 4)
         {
@@ -319,5 +327,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetTrigger("final");
         killing = true;
         killTime = 11f;
+        controller.disabled = true;
+        controller.animationTimer = 11.0f;
     }
 }

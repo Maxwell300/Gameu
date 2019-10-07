@@ -78,7 +78,7 @@ public class CharacterController2D : MonoBehaviour
     disabled = Timer(ref disabled, ref animationTimer);
     if(disabled)
     {
-        m_Rigidbody2D.velocity = new Vector2(0f, 0f);
+        m_Rigidbody2D.velocity = new Vector2(0f, -9.81f);
         return;
     }
 

@@ -14,6 +14,7 @@ public class Door : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(player.getTargetsHit());
         if(player.getTargetsHit() == numberToProceed)
         {
             Destroy();
